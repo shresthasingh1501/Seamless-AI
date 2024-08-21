@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>  
+	<meta charset="UTF-8">  
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+	<meta name="description" content="A conversational AI system that listens, learns, and challenges">
+	<meta property="og:title" content="ChatGPT">
+	<meta property="og:image" content="https://openai.com/content/images/2022/11/ChatGPT.jpg">
+	<meta property="og:description" content="A conversational AI system that listens, learns, and challenges">
+	<meta property="og:url" content="https://chat.acy.dev">
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="manifest" href="/assets/img/site.webmanifest">
+	<script src="/assets/js/icons.js"></script>
+	<script src="/assets/js/chat.js" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/markdown-it@latest/dist/markdown-it.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+	<link rel="stylesheet"
+		href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/base16/dracula.min.css">
+	<script>
+		const user_image = `<img src="/assets/img/user.png" alt="User Avatar">`;
+		const gpt_image = `<img src="/assets/img/seamless-symbol.png" alt="GPT Avatar">`;
+	</script>
+	<style>
+		.hljs {
+			color: #e9e9f4;
+			background: #28293629;
+			border-radius: var(--border-radius-1);
+			border: 1px solid var(--blur-border);
+			font-size: 15px;
+		}
+
+		#message-input {
+			margin-right: 30px;
+			height: 80px;
+		}
+
+		#message-input::-webkit-scrollbar {
+			width: 5px;
+		}
+
+		/* Track */
+		#message-input::-webkit-scrollbar-track {
+			background: #f1f1f1;
+		}
+
+		/* Handle */
+		#message-input::-webkit-scrollbar-thumb {
+			background: #756d52;
+		}
+
+		/* Handle on hover */
+		#message-input::-webkit-scrollbar-thumb:hover {
+			background: #797359;
+		}
+	</style>
+	<script src="/assets/js/highlight.min.js"></script>
+	<script src="/assets/js/highlightjs-copy.min.js"></script>
+	<script>window.conversation_id = `{{chat_id}}`</script>
+	<title>Seamless AI</title>
+</head>
+
+<body>
+	<div class="gradient"></div>
+	<div class="row">
+		<div class="box conversations">
+
+			<div class="top">
+				
+				<button class="new_convo" onclick="new_conversation()">
+				  <i class="fa-regular fa-plus"></i>
+				  <span>New</span>
+				</button>
+
+				<button class="clear_btn" onclick="delete_conversations()">
+				  <i class="fa-regular fa-trash"></i>
+				  <span>Clear</span>
+				</button>
+
+				<div class="spinner"></div>
+
+			</div>
+
+			<div class="bottom_buttons">
+				
+				
+				<div class="user-settings">
+					<span class="button-label">Output Mode</span>
+					<span class="button-label">Language</span>
+				</div>
+
+				<div class="user-settings">
+					<div class="field">
+						<select name="mode-select" id="mode">
+							<option value="txt" selected>Text</option>
+							<option value="img">Image</option>
+							<optgroup class="auto-option hidden">
+								<option value="auto">Auto</option>
+							</optgroup>
+						</select>
+					</div>
+					
+					
+					
+					<div class="field">
+						<select name="language" id="language">
+							<option value="en" selected>English</option>
+							<option value="hi">Hindi</option>
+							<option value="bn">Bengali</option>
+							<option value="ta">Tamil</option>
+							<option value="mr">Marathi</option>
+							<option value="gu">Gujarati</option>
+							<option value="pa">Punjabi</option>
+							<option value="ur">Urdu</option>
+							<option value="Te">Telugu</option>
+							<option value="kn">Kannada</option>
+							<option value="ml">Malayalam</option>
+							<optgroup class="auto-option hidden">
+								<option value="auto">Auto</option>
+							</optgroup>
+						</select>
+					</div>
+				</div>
+
+				<!-- <div class="field">
+					<span class="about">Dark Mode</span>
+					<input type="checkbox" id="switch" />
+					<label class="switch-label" for="switch"></label>
+				</div>-->
+
+				<style>
+					.samvaad-header {
+						font-size: 24px; /* Adjust the font size as needed */
+						text-align: center; /* Center the text */
+					}
+				</style>
+				
+				<div class="header-container">
+					<h1 class="samvaad-header">SEAMLESS MODE</h1>
+					<span class="subtitle" style="margin-top: 10px;"> 
+						<i>Experimental Feature</i>
+					</span>
+				</div>
+				
+				
+			</div>
+
+		</div>
+		<div class="conversation disable-scrollbars">
+			<div class="stop_generating stop_generating-hidden">
+				<button id="cancelButton">
+					<span>Stop Generating</span>
+					<i class="fa-regular fa-stop"></i>
+				</button>
+			</div>
+
+			<!-- Main Conversation Box-->
+			<div class="box" id="messages">
+				<h1 id="greeting"> </h1>
+			</div>
+			
+			<div class="user-input">
+				<div class="box input-box">
+					<textarea id="message-input" placeholder="Ask a question" cols="30" rows="10"
+						style="white-space: pre-wrap;" oninput="resizeTextarea(this)"></textarea>
+
+					<div id="mic-button">
+						<input type="file" id="audioUploadInput" accept="audio/*" style="display: none;">
+						<label for="uploadInput">
+							<i class="fa-solid fa-microphone" id="audioIcon"></i>
+						</label>
+					</div>
+
+					<div id="image-button">
+						<input type="file" id="image-upload" accept="image/*" style="display: none;" />
+						<i class="ri-image-add-line image-btn" onclick="openFilePicker()"></i>
+						</label>
+					</div>
+
+					<div id="send-button">
+						<i class="fa-regular fa-paper-plane-top"></i>
+					</div>
+				</div>
+			</div>
+
+			<div class="space">
+			</div>
+
+		</div>
+	</div>
+	<div class="mobile-sidebar">
+		<i class="fa-solid fa-bars"></i>
+	</div>
+
+	<div class="desktop-sidebar-toggle">
+		<i class="fa-solid fa-bars"></i>
+	  </div>
+
+</body>
+
+</html>

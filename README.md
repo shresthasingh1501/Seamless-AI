@@ -8,12 +8,17 @@ Seamless AI is a cutting-edge AI suite that combines state-of-the-art natural la
 
 </div>
 
+## Image 2 Speech Pipeline
 ![1719138560906](https://github.com/user-attachments/assets/5fcf119f-f3fe-4c64-a735-b0aad43867bb)
+
+## Speech 2 Speech Pipeline
 ![1719138560857](https://github.com/user-attachments/assets/afef9410-cc6a-44ce-afce-5364d4e8174f)
+
+## Text 2 Speech Pipeline
 ![1719138560886](https://github.com/user-attachments/assets/0f22bb9b-ff9b-4a0a-8cd2-36c29707bfb2)
 
 
-![1719138561284](https://github.com/user-attachments/assets/b355b5ca-92f6-41f3-b79e-afa7d7ee8f32)
+
 
 
 ## Repository Structure
@@ -72,3 +77,6 @@ This project is licensed under the [MIT License](LICENSE).
 ## Acknowledgments
 
 Seamless AI was developed by Team UNDERGOD, during the SAMSUNG PRISM GEN AI HACKATHON. We would like to express our gratitude to Samsung for organizing this event and providing us with the opportunity to showcase our skills and innovation.
+
+## Certificate 
+![1719138561284](https://github.com/user-attachments/assets/b355b5ca-92f6-41f3-b79e-afa7d7ee8f32)

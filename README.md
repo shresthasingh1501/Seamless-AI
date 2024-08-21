@@ -8,6 +8,13 @@ Seamless AI is a cutting-edge AI suite that combines state-of-the-art natural la
 
 </div>
 
+![1719138560906](https://github.com/user-attachments/assets/5fcf119f-f3fe-4c64-a735-b0aad43867bb)
+![1719138560857](https://github.com/user-attachments/assets/afef9410-cc6a-44ce-afce-5364d4e8174f)
+![1719138560886](https://github.com/user-attachments/assets/0f22bb9b-ff9b-4a0a-8cd2-36c29707bfb2)
+
+
+![1719138561284](https://github.com/user-attachments/assets/b355b5ca-92f6-41f3-b79e-afa7d7ee8f32)
+
 
 ## Repository Structure
 
